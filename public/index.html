@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatnetto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+      
+      
+ 
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyDhtSybMfcQYqOD66C40G3JJ2gIbyjLX2U",
+          authDomain: "chatnetto.firebaseapp.com",
+          databaseURL: "https://chatnetto.firebaseio.com",
+          projectId: "chatnetto",
+          storageBucket: "chatnetto.appspot.com",
+          messagingSenderId: "953145108501",
+          appId: "1:953145108501:web:422bd9c43e4f2d9679461c",
+          measurementId: "G-MF455LZKMF"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+      </script>
+      
+
+</head>
+<body>
+   
+    <!-- <button id="signIn" onclick="loging()">signin with google</button>
+    <button id="signOut" onclick="signOut()">signout with google</button>
+    <div>
+        <div><img  id="profilepic" src="ppic.png" alt=""></div>
+    </div> -->
+
+    <span class="top"></span>
+
+    <div class="container-fluid bg-white shadow-lg rounded chatbox">
+        <div class="row h-100">
+            <div class="col-md-4 pr-0 d-none d-md-block" id="side1">
+                 <div class="card ">
+                     <div class="card-header">
+                          <div class="row">
+                            <div class="col-1 col-sm-1 col-md-1 d-md-none">
+                                <i class="fa fa-arrow-left d-md-none " style="font-size: 20px; cursor: pointer;" onclick="hideChatlist()"></i>
+                            </div>
+                                   <div class="col-6 col-sm-6 col-md-6">
+                                      <img id="profilepic" src="ppic.png"  class="profile-pic" alt="">
+                                   </div>
+                                   <div class="col-4 col-sm-4 col-md-4">
+                                  <div class="dropleft">
+                                      <span class="dropdown-toggle" data-toggle="dropdown" style=" float: right;">
+                                        <i class="fa fa-ellipsis-v icon  " style="cursor: pointer;" ></i>
+                                        <!-- yahan se upper mene onclick wala function hataya he -->
+                                      </span>
+                                      <div class="dropdown-menu" >
+                                        <a href="#"  class="dropdown-item" id="disableNewchat" onclick="populateFriendlist()" data-toggle="modal" data-target="#modalFriendlist">New Chat</a>
+                                        <a href="#" id="signIn" onclick="loging()" class="dropdown-item">Sign In</a>
+                                        <a href="#" id="signOut" onclick="signOut()" class="dropdown-item" style="display:none;" >Sign Out</a>
+                                        
+                                    
+                                    </div>
+                                    <div class="modal fade" id="modalFriendlist">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        Friend list
+                                                        <span class="close" data-dismiss="modal" style="cursor: pointer;">&times;</span>
+                                                      
+                                                    </div>
+                                                    <ul class="list-group list-group-flush" id="friendlist">
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                   
+                           </div>
+                         
+                      </div>
+                      <ul class="list-group list-group-flush" id="listChat">
+                      
+                       
+
+                        <!-- <li class="list-group-item list-group-item-action"  onclick="startChat()">
+                            <div class="row">
+                              <div class="col-md-2">
+                                  <img src="ppic.png" class="fpic" alt="">
+                              </div>
+                              <div class="col-md-10" style="cursor: pointer;">
+                                  <div class="name">Any Name</div>
+                                  <div class="under-name">This is some message</div>
+                              </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item list-group-item-action"  onclick="startChat()">
+                            <div class="row">
+                              <div class="col-md-2">
+                                  <img src="ppic.png" class="fpic" alt="">
+                              </div>
+                              <div class="col-md-10" style="cursor: pointer;">
+                                  <div class="name">Any Name</div>
+                                  <div class="under-name">This is some message</div>
+                              </div>
+                            </div>
+                        </li> -->
+                      </ul>
+                </div>
+            </div>
+            <div class="col-md-8 pl-0" id="side2">
+                <div class="card " id="seconddiv" style="display: none;">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-1 col-sm-1 col-lg-1 col-md-1">
+                                <i class="fa fa-list mt-2 d-md-none" style="cursor: pointer;" onclick="showChatlist()"></i>
+                            </div>
+                            <div class="col-2 col-sm-2 col-lg-1 col-md-2">
+                                <img src="ppic.png" id="imgChat" class="profile-pic" alt="">
+                            </div>
+                            <div class="col-5 col-sm-5 col-lg-7 col-md-5">
+                                <div class="name" id="divChatname">Any name</div>
+                                <div class="under-name" id="divChatseen">Last seen 18/9/2020</div>
+                            </div>
+                            <div class="col-4 col-sm-4 col-lg-3 col-md-4 icon d-sm-none d-none">
+                                <i class="fa fa-search"></i>
+                                <i class="fa fa-paperclip ml-4"></i>
+                                <i class="fa fa-ellipsis-v ml-4"></i>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" id="messages">
+                     
+                        <!-- <div class="row justify-content-end">
+                           
+                            <div class="col-7 col-md-7 col-sm-7 ">
+                                <p class="sent float-right">This is msg from somebody
+                                    <span class="time">1:28 PM</span></p>
+                            </div>
+                            <div class="col-2 col-sm-1 col-md-1">
+                                <img src="ppic.png"  class="chat-pic" alt="">
+                            </div>
+                            
+                        </div> -->
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class=" col-2 col-md-1">
+                                <i class="far fa-grin fa-2x"></i>
+                            </div>
+                            <div class="col-8 col-md-10">
+                                <input  id="txtMsg" type="text" placeholder="Type here" class="form-control form-rounded" id="">
+                            </div>
+                            <div class="col-2 col-md-1">
+                                <i class="fa fa-microphone fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" id="firstdiv" >
+                    <h2 class="mt-3" style="color: rgb(0, 61, 43);" >CHATNETTO</h2>
+                    <i class="fa fa-comments  mt-0" style="font-size: 250px; color: rgb(1, 136, 1);"></i>
+                    <h2 class="mt-3">Select anyone for chat from list and  <br> Start chatting</h2>
+                    <a href="#" onclick="showChatlist()" id="blue" class="d-md-none btn btn-primary">New Chat</a>
+                    <button onclick="loging()" id="red" class="btn btn-primary">Sign In</button>
+                    <!-- <div class="dropdown" style="display: inline;">
+                        <a style="background-color: rgb(9, 53, 0);" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink red" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Sign In
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" onclick="loging()" style="color: honeydew; background-color: crimson;"  href="#">Sign In with Google</a>
+                          <a class="dropdown-item" href="#" onclick="loginf()" style="color: white; background-color: rgb(0, 97, 153);">Sign In with Facebook</a>
+                        </div>
+                      </div> -->
+                    <button onclick="signOut()" id="blue" class="btn btn-primary">Sign Out</button>
+                    <div>
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mt-2" style="background-color: rgb(0, 92, 84);" data-toggle="modal" data-target="#exampleModal">
+    Developer
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Syed Usama Ali</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          <img src="./WhatsApp Image 2020-09-01 at 6.31.47 PM.jpeg" style="max-width: 250px; border-radius: 5px;" alt="">
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <!-- <script src="jquery-3.5.1.slim.min.js"></script> -->
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.bundle.js"></script>
+    <script src="/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

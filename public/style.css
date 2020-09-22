@@ -1,0 +1,103 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    padding :0;
+    margin:0;
+    overflow: hidden;
+}
+body{
+    font-family: 'Segoe UI', Helvetica Nenu, Helvetica,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(180deg,#dddbd1,#d2bddc);
+
+}
+.top{
+    height:130px;
+    width:100%;
+    background-color: #009688;
+    position: fixed;
+    z-index: -1;
+
+}
+.chatbox{
+    height: calc(100% - 30px);
+    width: 95% !important;
+    margin-top: 20px;
+    padding: 0!important;
+  
+}
+.profile-pic{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.fpic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.name{
+    font-weight: 400;
+    color: #000;
+}
+.under-name{
+    font-size: 12px;
+    line-height: 15px;
+    max-height: 15px;
+}
+.form-rounded{
+    border-radius: 20px!important;
+   
+}
+.icon{
+    font-size: 20px;
+    color: #9ca1a3;
+}
+.chat-pic{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.recieve{
+    background-color: lightgreen;
+    border-radius: 1rem;
+    padding: 10px 15px;
+    display: inline-block;
+
+}
+.time{
+    font-size: 10px;
+    color:rgb(26, 41, 22) ;
+    margin-top: 3%;
+    margin-left: 1%;
+    float: right;
+}
+.sent{
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    padding: 10px 15px;
+    display: inline-block;
+}
+.card{
+    height: 94vh;
+}
+#messages{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.dropdown-toggle::before{
+    display: none!important;
+}
+#red{
+     background-color: green!important;
+}
+#blue{
+    background-color: rgb(0, 44, 42);
+}
+#chatt{
+    text-shadow: rgb(0, 36, 33);
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-decoration: underline;
+    text-decoration: wavy;
+    /* text-decoration-style: dashed; */
+    background-color: rgb(0, 121, 80);
+}
